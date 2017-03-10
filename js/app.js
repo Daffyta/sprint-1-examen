@@ -2,7 +2,7 @@ var estudiantes = [];
 
 function obtenerListaEstudiantes() {
     // TO DO: Retornar la lista de estudiantes
-
+    return estudiantes;
 }
 
 function agregarEstudiante() {
@@ -10,54 +10,30 @@ function agregarEstudiante() {
     // Hint: El estudiante debe ser agregado a la lista de estudiantes
     // TO DO: Retornar el estudiante recientemente creado
 
-    var numeroEstudiantes = parseInt(prompt("¿Cuántos estudiantes vas a agregar?"));
-
-    //Pregunta al usuario
-    for(var i = 0; i < numeroEstudiantes; i++){
-      var nombre = prompt("Nombre del estudiante:");
-      var puntosTec = parseInt(prompt("Puntos técnicos del estudiante:"));
-      var puntosH = parseInt(prompt("Puntos de HSE del estudiante:"));
+      var nombreEstudiante = (prompt("Nombre del estudiante:")).toLowerCase();
+      var puntosTecnicos = parseInt(prompt("Puntos técnicos del estudiante:"));
+      var puntosHse = parseInt(prompt("Puntos de HSE del estudiante:"));
 
       var estudiante = {
-          nombre: nombre,
-          puntosTec: puntosTec,
-          puntosH: puntosH
+        "nombreEstudiante": nombreEstudiante,
+        "puntosTecnicos": puntosTecnicos,
+        "puntosHse": puntosHse
       };
-    }
 
-//    return estudiante;
-    estudiantes.push(estudiante);
+      estudiantes.push(estudiante);
+      return estudiante;
 }
 
 function mostrar(estudiante) {
     // TO DO: Completar el template para que muestre las propiedades correctas del estudiante
-    // var resultado = estudiantes;
-    // // estudiante = {
-    // //     nombre: nombre,
-    // //     puntosTec: puntosTec,
-    // //     puntosH: puntosH
-    // // };
-    // resultado += "<div class='row'>";
-    // resultado += "<div class='col m12'>";
-    // resultado += "<div class='card blue-grey darken-1'>";
-    // resultado += "<div class='card-content white-text'>";
-    // resultado += "<p><strong>Nombre:</strong> " + estudiante.nombre() + "</p>";
-    // resultado += "<p><strong>Puntos Técnicos:</strong> " + estudiante.puntosTec() + "</p>";
-    // resultado += "<p><strong>Puntos HSE:</strong> " + estudiante.puntosH() + "</p>";
-    // resultado += "</div>";
-    // resultado += "</div>";
-    // resultado += "</div>";
-    // resultado += "</div>";
-    // return resultado;
-
     var resultado = " ";
     resultado += "<div class='row'>";
     resultado += "<div class='col m12'>";
     resultado += "<div class='card blue-grey darken-1'>";
     resultado += "<div class='card-content white-text'>";
-    resultado += "<p><strong>Nombre:</strong> " + estudiante + "</p>";
-    resultado += "<p><strong>Puntos Técnicos:</strong> " + estudiante + "</p>";
-    resultado += "<p><strong>Puntos HSE:</strong> " + estudiante + "</p>";
+    resultado += "<p><strong>Nombre:</strong> " + estudiante.nombreEstudiante + "</p>";
+    resultado += "<p><strong>Puntos Técnicos:</strong> " + estudiante.puntosTecnicos + "</p>";
+    resultado += "<p><strong>Puntos HSE:</strong> " + estudiante.puntosHse + "</p>";
     resultado += "</div>";
     resultado += "</div>";
     resultado += "</div>";
@@ -68,7 +44,13 @@ function mostrar(estudiante) {
 function mostrarLista(estudiantes) {
     // TO DO: Iterar la lista del estudiantes para devolverlos en el formato que usa la función mostrar(estudiante)
     // Retornar el template de todos los estudiantes
+    var listaEstudiantes = " ";
+    for(var i = 0; i < estudiantes.length; i++){
+      listaEstudiantes += mostrar(estudiantes[i]);
+    }
+    return listaEstudiantes;
 
+    //No entiendo el forEach xDD
 }
 
 function buscar(nombre, estudiantes) {
@@ -76,16 +58,34 @@ function buscar(nombre, estudiantes) {
     // Retornar el objeto del estudiante buscado
     // Nota: NO IMPORTA SI EL USUARIO ESCRIBE EL NOMBRE EN MAYÚSCULAS O MINÚSCULAS
 
+    // var buaquedaEstudiante = [];
+    // nombre = nombre.toLowerCase();
+    // for( var i = 0; i < estudiantes.length; i++){
+    //   if(estudiantes[i].nombre == nombre){
+    //     buaquedaEstudiante.push(estudiantes[i]);
+    //     return buaquedaEstudiante;
+    //   };
+    // };
+
+    estudiantes.filter(function(busquedaEstudiante){
+      return estudiantes.nombre == mostrar(busquedaEstudiante);
+    })
+
+    return estudiantes.nombre;
 }
 
 function topTecnico(estudiantes) {
     // TO DO: Retornar el arreglo de estudiantes ordenado por puntaje técnico de mayor a menor
-  // if (){
-  //   estudiantes.sort(function(a,b))
-  // }
+    var ordenarPuntosTec = estudiantes.sort(function(a,b){
+      return b.puntosTecnicos > a.puntosTecnicos;
+    })
+    return ordenarPuntosTec;
 }
 
 function topHSE(estudiantes) {
     // TO DO: Retornar el arreglo de estudiantes ordenado por puntaje de HSE de mayor a menor
-
+    var ordenarPuntosHse = estudiantes.sort(function(a,b){
+      return b.puntosHse > a.puntosHse;
+    })
+    return ordenarPuntosHse;
 }
