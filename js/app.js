@@ -67,11 +67,11 @@ function buscar(nombre, estudiantes) {
     //   };
     // };
 
-    estudiantes.filter(function(busquedaEstudiante){
-      return estudiantes.nombre == mostrar(busquedaEstudiante);
+    var busquedaEstudiante = estudiantes.filter(function(alumno){
+      return alumno.nombreEstudiante.toLowerCase() == nombre(alumno);
     })
 
-    return estudiantes.nombre;
+    return busquedaEstudiante;
 }
 
 function topTecnico(estudiantes) {
