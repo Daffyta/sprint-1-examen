@@ -50,6 +50,10 @@ function mostrarLista(estudiantes) {
     }
     return listaEstudiantes;
 
+    // var busquedaEstudiante = estudiantes.forEach(function(){
+    //   listaEstudiantes += mostrar(estudiantes[i]);
+    // }
+
     //No entiendo el forEach xDD
 }
 
